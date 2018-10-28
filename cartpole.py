@@ -18,17 +18,23 @@ def run_episode(env, parameters):
             break
     return totalreward
 
-bestparams = None  
-bestreward = 0  
-for _ in range(10000):  
-    parameters = np.random.rand(4)
-    reward = run_episode(env,parameters)
-    if reward > bestreward:
-        print('Parameters updated at {} round.'.format(_+1))
-        print('We managed to last for {} timesteps!'.format(reward))
-        bestreward = reward
-        bestparams = parameters
-        # considered solved if the agent lasts 200 timesteps
-        if reward == 200:
-            print(bestparams)
-            break
+
+def main():
+    bestparams = None  
+    bestreward = 0  
+    for _ in range(10000):  
+        parameters = np.random.rand(4)
+        reward = run_episode(env,parameters)
+        if reward > bestreward:
+            print('Parameters updated at {} round.'.format(_+1))
+            print('We managed to last for {} timesteps!'.format(reward))
+            bestreward = reward
+            bestparams = parameters
+            # considered solved if the agent lasts 200 timesteps
+            if reward == 200:
+                print(bestparams)
+                break
+
+
+if __name__ == '__main__':
+    main()
